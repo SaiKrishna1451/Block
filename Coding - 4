@@ -1,0 +1,140 @@
+The coding part for the Order Management module:
+
+1. Created a component for order creation:
+
+
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const OrderCreation = () => {
+  const [userId, setUserId] = useState('');
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleAddProduct = () => {
+    setProducts([...products, { name: '', price: 0 }]);
+  };
+
+  const handleProductChange = (index, field, value) => {
+    const updatedProducts = [...products];
+    updatedProducts[index][field] = value;
+    setProducts(updatedProducts);
+  };
+
+  const handleOrderCreation = async (event) => {
+    event.preventDefault();
+
+    setIsLoading(true);
+
+    try {
+      // Make an HTTP request to your backend to create the order
+      await axios.post('/api/orders', { userId, products });
+      // Handle success response
+      setError(null);
+      setUserId('');
+      setProducts([]);
+    } catch (error) {
+      // Handle error response
+      setError(error.response.data.message);
+    }
+
+    setIsLoading(false);
+  };
+
+  return (
+    <form onSubmit={handleOrderCreation}>
+      <h2>Create Order</h2>
+      <input
+        type="text"
+        placeholder="User ID"
+        value={userId}
+        onChange={(event) => setUserId(event.target.value)}
+        required
+      />
+      {products.map((product, index) => (
+        <div key={index}>
+          <input
+            type="text"
+            placeholder="Product Name"
+            value={product.name}
+            onChange={(event) =>
+              handleProductChange(index, 'name', event.target.value)
+            }
+            required
+          />
+          <input
+            type="number"
+            placeholder="Product Price"
+            value={product.price}
+            onChange={(event) =>
+              handleProductChange(
+                index,
+                'price',
+                Number(event.target.value)
+              )
+            }
+            required
+          />
+        </div>
+      ))}
+      <button type="button" onClick={handleAddProduct}>
+        Add Product
+      </button>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? 'Creating Order...' : 'Create Order'}
+      </button>
+      {error && <div>{error}</div>}
+    </form>
+  );
+};
+
+export default OrderCreation;
+```
+
+2. Created a component for order listing:
+
+
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const OrderListing = () => {
+  const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      setIsLoading(true);
+
+      try {
+        // Make an HTTP request to your backend to fetch the orders
+        const response = await axios.get('/api/orders');
+        // Handle success response
+        setOrders(response.data);
+        setError(null);
+      } catch (error) {
+        // Handle error response
+        setError(error.response.data.message);
+      }
+
+      setIsLoading(false);
+    };
+
+    fetchOrders();
+  }, []);
+
+  return (
+    <div>
+      <h2>Order Listing</h2>
+      {isLoading ? (
+        <p>Loading orders...</p>
+      ) : (
+        <>
+          {error && <div>{error}</div>}
+          <ul>
+            {orders.map((order) => (
+              <li key={order.id}>
+                Order
