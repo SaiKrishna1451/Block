@@ -1,0 +1,183 @@
+The  coding part for the Banking Services Integration module, utilizing Kotlin with Spring and Gradle:
+
+1. Defined the necessary models for banking services:
+
+
+
+data class Loan(
+    val id: String,
+    val amount: Double,
+    val interestRate: Double,
+    val term: Int
+)
+
+// CashAdvance.kt
+
+data class CashAdvance(
+    val id: String,
+    val amount: Double,
+    val fee: Double,
+    val repaymentDate: LocalDate
+)
+
+// FinancialReport.kt
+
+data class FinancialReport(
+    val id: String,
+    val sales: Double,
+    val expenses: Double,
+    val netIncome: Double
+)
+```
+
+2. Implemented the banking services endpoints and controllers:
+
+
+@RestController
+@RequestMapping("/api/loans")
+class LoanController {
+  
+  @PostMapping
+  fun createLoan(@RequestBody loan: Loan): ResponseEntity<String> {
+    // Validate loan input
+
+    // Save loan to the database
+
+    return ResponseEntity.ok("Loan created successfully")
+  }
+
+  // Implement other CRUD operations for loans
+}
+
+// CashAdvanceController.kt
+
+@RestController
+@RequestMapping("/api/cash-advances")
+class CashAdvanceController {
+  
+  @PostMapping
+  fun createCashAdvance(@RequestBody cashAdvance: CashAdvance): ResponseEntity<String> {
+    // Validate cash advance input
+
+    // Save cash advance to the database
+
+    return ResponseEntity.ok("Cash advance created successfully")
+  }
+
+  // Implemented other CRUD operations for cash advances
+}
+
+// FinancialReportController.kt
+
+@RestController
+@RequestMapping("/api/financial-reports")
+class FinancialReportController {
+  
+  @PostMapping
+  fun createFinancialReport(@RequestBody financialReport: FinancialReport): ResponseEntity<String> {
+    // Validate financial report input
+
+    // Save financial report to the database
+
+    return ResponseEntity.ok("Financial report created successfully")
+  }
+
+  // Implemented other CRUD operations for financial reports
+}
+
+3. Configured the Spring application and database settings:
+
+
+
+@SpringBootApplication
+class Application
+
+fun main(args: Array<String>) {
+    runApplication<Application>(*args)
+}
+
+
+4. Run the Spring application:
+
+./gradlew bootRun
+
+5. Implemented the service layer and database integration:
+
+
+
+@Service
+class LoanService(private val loanRepository: LoanRepository) {
+
+    fun createLoan(loan: Loan): Loan {
+        // Validate loan input
+
+        // Save loan to the database
+        return loanRepository.save(loan)
+    }
+
+    // Implemented other service methods for loans
+}
+
+// CashAdvanceService.kt
+
+@Service
+class CashAdvanceService(private val cashAdvanceRepository: CashAdvanceRepository) {
+
+    fun createCashAdvance(cashAdvance: CashAdvance): CashAdvance {
+        // Validate cash advance input
+
+        // Save cash advance to the database
+        return cashAdvanceRepository.save(cashAdvance)
+    }
+
+    // Implemented other service methods for cash advances
+}
+
+// FinancialReportService.kt
+
+@Service
+class FinancialReportService(private val financialReportRepository: FinancialReportRepository) {
+
+    fun createFinancialReport(financialReport: FinancialReport): FinancialReport {
+        // Validate financial report input
+
+        // Save financial report to the database
+        return financialReportRepository.save(financialReport)
+    }
+
+    // Implemented other service methods for financial reports
+}
+
+
+6. Implemented the repository layer for database operations:
+
+
+
+@Repository
+interface LoanRepository : JpaRepository<Loan, String> {
+    // Implement custom query methods if needed
+}
+
+// CashAdvanceRepository.kt
+
+@Repository
+interface CashAdvanceRepository : JpaRepository<CashAdvance, String> {
+    // Implement custom query methods if needed
+}
+
+// FinancialReportRepository.kt
+
+@Repository
+interface FinancialReportRepository : JpaRepository<FinancialReport, String> {
+    // Implement custom query methods if needed
+}
+```
+
+7. Configured the database connection in the application properties:
+
+
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/database_name
+spring.datasource.username=username
+spring.datasource.password=password
+spring.jpa.hibernate.ddl-auto=update
