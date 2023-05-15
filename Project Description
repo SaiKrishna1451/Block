@@ -1,0 +1,25 @@
+Project: Integrated Economic Empowerment Platform
+
+Description:
+Developed an integrated economic empowerment platform that combines the offerings of Square, Cash App, Spiral, TIDAL, and TBD. Utilize all required skills for the role such as Python (Flask), Kotlin (Spring / Gradle), PostgreSQL, Kafka, AWS EventBridge, Infra/DevOps (Heroku and AWS), Docker, Kubernetes, Terraform, Helm, Buildkite for CI/CD, Git + Github, React and Redux (including hooks) in TypeScript, React Testing Library and Cypress, Material UI and Figma, and Webpack 5 to create a seamless and scalable platform.
+
+Key Features and Components:
+1. Seller Tools and Commerce Solutions: Implemented Square's commerce solutions using Python (Flask) and PostgreSQL, allowing sellers to efficiently manage their businesses with features like inventory management, payment processing, and business analytics.
+
+2. Banking Services Integration: Utilized Kotlin (Spring / Gradle) to integrate Square's banking services, enabling sellers to access business loans, merchant cash advances, and financial reporting functionalities.
+
+3. Cash App Enhancements: Developed a robust backend using Kotlin (Spring / Gradle) and PostgreSQL to integrate Cash App features like instant money transfers, mobile banking, investing options, and cryptocurrency support, making financial services universally accessible.
+
+4. Bitcoin Empowerment Initiatives: Utilized Kotlin (Spring / Gradle) and Kafka to collaborate with Spiral on Bitcoin empowerment initiatives, including facilitating Bitcoin payments, promoting financial education, and exploring blockchain technology applications.
+
+5. Artist-Fan Engagement Platform: Implemented TIDAL's global platform using Python (Flask), Kotlin (Spring / Gradle), and PostgreSQL. Provide features for artists to share unique content, interact with fans, and offer services that empower them as entrepreneurs in the music industry.
+
+6. Open Developer Platform: Developed TBD's open developer platform using Python (Flask), Kotlin (Spring / Gradle), and PostgreSQL, providing comprehensive documentation, developer tools, and APIs to access Bitcoin and other blockchain technologies.
+
+7. User-Friendly Interface: Utilized React and Redux (including hooks) in TypeScript, Material UI, and Figma to design a modern and responsive frontend that offers a seamless user experience across the platform's functionalities.
+
+8. Infrastructure and DevOps: Utilized Docker, Kubernetes, Terraform, Helm, and AWS to build and deploy the platform infrastructure on AWS and Heroku. Implement CI/CD pipelines using Buildkite for continuous integration and deployment.
+
+9. Testing and Quality Assurance: Employed React Testing Library and Cypress for frontend testing to ensure code quality, functionality, and reliability.
+
+By showcasing required skills in these technologies and frameworks, I will demonstrate your ability to build a robust, scalable, and user-friendly integrated economic empowerment platform. I showcased all my  experience in backend development, frontend design, infrastructure management, CI/CD practices, and testing methodologies to impress you with my expertise and suitability for the project.
