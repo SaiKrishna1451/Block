@@ -1,0 +1,63 @@
+The coding part for the Responsive Design module:
+
+1. Set up the necessary dependencies in your project:
+
+
+npm install @material-ui/core @material-ui/icons
+
+
+2. Created a responsive component using Material UI:
+
+
+// ResponsiveComponent.js
+
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  },
+  text: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5rem',
+    },
+  },
+}));
+
+const ResponsiveComponent = () => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.container}>
+      <Typography variant="h4" className={classes.text}>
+        This is a responsive component.
+      </Typography>
+    </div>
+  );
+};
+
+export default ResponsiveComponent;
+
+
+3. Use the responsive component in your application:
+
+
+
+import React from 'react';
+import ResponsiveComponent from './ResponsiveComponent';
+
+const App = () => {
+  return (
+    <div>
+      <ResponsiveComponent />
+    </div>
+  );
+};
+
+export default App;
+
