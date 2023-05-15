@@ -18,7 +18,7 @@ Key Features and Components:
 
 7. User-Friendly Interface: Utilized React and Redux (including hooks) in TypeScript, Material UI, and Figma to design a modern and responsive frontend that offers a seamless user experience across the platform's functionalities.
 
-8. Infrastructure and DevOps: Utilized Docker, Kubernetes, Terraform, Helm, and AWS to build and deploy the platform infrastructure on AWS and Heroku. Implement CI/CD pipelines using Buildkite for continuous integration and deployment.
+8. Infrastructure and DevOps: Utilized Docker, Kubernetes, Terraform, Helm, and AWS to build and deploy the platform infrastructure on AWS and Heroku. Implemented CI/CD pipelines using Buildkite for continuous integration and deployment.
 
 9. Testing and Quality Assurance: Employed React Testing Library and Cypress for frontend testing to ensure code quality, functionality, and reliability.
 
