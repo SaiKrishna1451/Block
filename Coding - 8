@@ -1,0 +1,110 @@
+The complete coding part for the Infrastructure and DevOps module, utilizing Docker, Kubernetes, Terraform, Helm, AWS, Heroku, and Buildkite:
+
+Infrastructure as Code (Terraform):
+1. Set up the Terraform configuration files:
+
+```hcl
+# main.tf
+
+provider "aws" {
+  access_key = "<your_aws_access_key>"
+  secret_access_key = "<your_aws_secret_access_key>"
+  region = "us-west-2" # Modify based on your desired region
+}
+
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "10.0.0.0/16"
+  enable_dns_support = true
+  enable_dns_hostnames = true
+}
+
+# Define other AWS resources as needed (e.g., EC2 instances, load balancers, etc.)
+```
+
+Deployment using Kubernetes and Helm:
+1. Set up the Kubernetes deployment files:
+
+```yaml
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: <your_docker_image>
+          ports:
+            - containerPort: 8080
+```
+
+2. Create the Helm chart for deploying the application:
+
+```yaml
+# Chart.yaml
+
+apiVersion: v2
+name: my-app
+version: 1.0.0
+
+# values.yaml
+
+replicaCount: 3
+image:
+  repository: <your_docker_repository>
+  tag: <your_docker_image_tag>
+  pullPolicy: IfNotPresent
+
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 8080
+```
+
+Continuous Integration and Deployment (Buildkite):
+1. Set up the Buildkite configuration file:
+
+```yaml
+# .buildkite/pipeline.yml
+
+steps:
+  - label: ":pipeline: Build and Test"
+    command: "npm install && npm run build && npm test"
+    agents:
+      queue: "buildkite-queue"
+
+  - wait
+
+  - label: ":pipeline: Deploy to Kubernetes"
+    command: "kubectl apply -f deployment.yaml"
+    agents:
+      queue: "buildkite-queue"
+```
+
