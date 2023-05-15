@@ -1,0 +1,108 @@
+The complete coding part for the User-Friendly Interface module, utilizing React and Redux with TypeScript, Material UI, and Figma:
+
+1. Set up the necessary dependencies in your project:
+
+```bash
+npm install react react-dom react-redux redux @reduxjs/toolkit @material-ui/core @material-ui/icons
+```
+
+2. Created a Redux store and configure the root reducer:
+
+```jsx
+// store.js
+
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers';
+
+const store = configureStore({
+  reducer: rootReducer,
+});
+
+export default store;
+```
+
+3. Implement Redux reducers for managing state:
+
+```jsx
+// reducers.js
+
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+  // Define your initial state here
+};
+
+const appSlice = createSlice({
+  name: 'app',
+  initialState,
+  reducers: {
+    // Define your reducers here
+  },
+});
+
+export const { actions, reducer } = appSlice;
+```
+
+4. Created reusable components using Material UI and React hooks:
+
+```jsx
+// UserCard.js
+
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Card, CardContent, Typography } from '@material-ui/core';
+
+const UserCard = () => {
+  const user = useSelector((state) => state.user);
+
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h5">{user.name}</Typography>
+        <Typography variant="subtitle1">{user.email}</Typography>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default UserCard;
+```
+
+```jsx
+// Button.js
+
+import React from 'react';
+import { Button as MaterialButton } from '@material-ui/core';
+
+const Button = (props) => {
+  return <MaterialButton variant="contained" color="primary" {...props} />;
+};
+
+export default Button;
+```
+
+5. Designed the user interface using Figma and implement the UI components:
+
+```jsx
+// App.js
+
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+import UserCard from './UserCard';
+import Button from './Button';
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div>
+        <h1>User-Friendly Interface</h1>
+        <UserCard />
+        <Button onClick={() => console.log('Button clicked')}>Click Me</Button>
+      </div>
+    </Provider>
+  );
+};
+
+export default App;
+```
